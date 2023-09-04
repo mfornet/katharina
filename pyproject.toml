@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "project-euler-tool"
+version = "0.1.0"
+description = ""
+authors = ["Marcelo Fornet <mfornet94@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "project_euler_tool" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+python-dotenv = "^1.0.0"
+pony = "^0.7.16"
+requests = "^2.31.0"
+bs4 = "^0.0.1"
+tabulate = "^0.9.0"
+
+[tool.poetry.scripts]
+katharina = "project_euler_tool.cli:main"
+
+
+[tool.poetry.group.dev.dependencies]
+tqdm = "^4.66.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
