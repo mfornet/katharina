@@ -1,6 +1,6 @@
 # Katharina
 
-In January 1734, he (Leonhard Euler) married Katharina Gsell (1707–1773) [^1]
+In January 1734, Leonhard Euler married Katharina Gsell (1707–1773) [^1]
 
 This tool helps selecting next problems to solve on [Project Euler](https://projecteuler.net/).
 
