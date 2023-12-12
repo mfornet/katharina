@@ -16,11 +16,11 @@ To have the command `katharina` available everywhere install using `python3 -m p
 
 ## Usage
 
-You can filter and sort problems by problem id (`pid`), difficulty, authors and solved status.
+You can filter and sort problems by problem id (`pid`), difficulty, solvers and solved status.
 
 ```
-❯ katharina 'difficulty == 30 | solved | sort authors asc'
-  problem_id  title                             difficulty    authors  solved
+❯ katharina 'difficulty == 30 | solved | sort solvers asc'
+  problem_id  title                             difficulty    solvers  solved
 ------------  ------------------------------  ------------  ---------  --------
          832  Mex Sequence                              30        274  True
          839  Beans in Bowls                            30        329  True
@@ -32,7 +32,7 @@ You can filter and sort problems by problem id (`pid`), difficulty, authors and 
          321  Swapping Counters                         30       1811  True
          293  Pseudo-Fortunate Numbers                  30       3116  True
          204  Generalised Hamming Numbers               30       7650  True
-         173  Hollow Square Laminae I                   30       9490  True
+         173  Hollow Square Laminae I                   30       9491  True
          113  Non-bouncy Numbers                        30      11717  True
          123  Prime Square Remainders                   30      12152  True
          116  Red, Green or Blue Tiles                  30      12792  True
@@ -45,7 +45,7 @@ You can filter and sort problems by problem id (`pid`), difficulty, authors and 
 
 ```
 ❯ katharina 'pid <= 200 | not solved | sort difficulty asc'
-  problem_id  title                                     difficulty    authors  solved
+  problem_id  title                                     difficulty    solvers  solved
 ------------  --------------------------------------  ------------  ---------  --------
          154  Exploring Pascal's Pyramid                        65       2801  False
          165  Intersections                                     65       2758  False

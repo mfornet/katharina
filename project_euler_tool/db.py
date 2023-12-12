@@ -9,7 +9,7 @@ class Problem(db.Entity):
     problem_id = PrimaryKey(int)
     title = Required(str)
     content = Required(str)
-    authors = Optional(int)
+    solvers = Optional(int)
     difficulty = Optional(int)
     solution = Optional(lambda: Solution)
     thread_comment = Set(lambda: ThreadComment)

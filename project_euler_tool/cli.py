@@ -16,23 +16,23 @@ def default(problems):
     unsolved_problems = [p for p in problems if not p.solved]
 
     easiest = sorted(unsolved_problems, key=lambda p: p.difficulty)[:n_cat]
-    most_authors = sorted(unsolved_problems, key=lambda p: p.authors)[-n_cat:]
+    most_solvers = sorted(unsolved_problems, key=lambda p: p.solvers)[-n_cat:]
     recent = sorted(unsolved_problems, key=lambda p: p.problem_id)[-n_cat:]
     oldest = sorted(unsolved_problems, key=lambda p: p.problem_id)[:n_cat]
     diff_cat = []
     diff_freq = defaultdict(int)
-    by_author = sorted(unsolved_problems, key=lambda p: -p.authors)
-    for prob in by_author:
+    by_solver = sorted(unsolved_problems, key=lambda p: -p.solvers)
+    for prob in by_solver:
         if diff_freq[prob.difficulty] < n_diff_cat:
             diff_cat.append(prob)
             diff_freq[prob.difficulty] += 1
 
     selected_problems = dict()
-    for prob in easiest + most_authors + recent + oldest + diff_cat:
+    for prob in easiest + most_solvers + recent + oldest + diff_cat:
         selected_problems[prob.problem_id] = prob
 
     selected_problems = sorted(
-        selected_problems.values(), key=lambda p: (p.difficulty, -p.authors)
+        selected_problems.values(), key=lambda p: (p.difficulty, -p.solvers)
     )
 
     return selected_problems
@@ -43,8 +43,8 @@ def get(p, id):
         return p.problem_id
     elif id.startswith("diff"):
         return p.difficulty
-    elif id.startswith("author"):
-        return p.authors
+    elif id.startswith("solver"):
+        return p.solvers
     else:
         return int(id)
 
@@ -60,7 +60,7 @@ def compare(left, op, right):
     return eval(f"{left} {op} {right}")
 
 
-FIELDS = "pid|diff[a-z]*|authors?"
+FIELDS = "pid|diff[a-z]*|solvers?"
 
 
 def parse_filter(f):

@@ -22,15 +22,15 @@ def parse_problem(problem_id: int, **kwargs) -> Tuple[Problem, Optional[Solution
     if difficulty is not None:
         difficulty = int(difficulty.group(1))
 
-    authors = re.search(r"Solved by (\d+);", info)
-    if authors is not None:
-        authors = int(authors.group(1))
+    solvers = re.search(r"Solved by (\d+);", info)
+    if solvers is not None:
+        solvers = int(solvers.group(1))
 
     problem = Problem(
         problem_id=problem_id,
         title=title,
         content=statement,
-        authors=authors,
+        solvers=solvers,
         difficulty=difficulty,
     )
 
@@ -46,7 +46,7 @@ class ProblemMeta:
     problem_id: int
     title: str
     difficulty: int
-    authors: int
+    solvers: int
     solved: bool
 
 
@@ -60,13 +60,13 @@ def parse_progress() -> List[ProblemMeta]:
     for prob in problems_section.find_all("td"):
         divs = prob.find_all("div")
         problem_id = int(re.match(r"Problem (\d+)", divs[0].text).group(1))
-        authors = int(re.match(r"Solved by (\d+)", divs[1].text).group(1))
+        solvers = int(re.match(r"Solved by (\d+)", divs[1].text).group(1))
         difficulty = re.match(r"Difficulty rating: (\d+)%", divs[2].text)
         difficulty = int(difficulty.group(1)) if difficulty is not None else 0
         title = divs[-1].text.strip('"')
         solved = any(div.text.startswith("Completed") for div in divs)
 
-        problem = ProblemMeta(problem_id, title, difficulty, authors, solved)
+        problem = ProblemMeta(problem_id, title, difficulty, solvers, solved)
         problems.append(problem)
 
     return problems
